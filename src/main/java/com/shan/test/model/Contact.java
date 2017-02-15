@@ -1,20 +1,39 @@
 package com.shan.test.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "contact")
 @Entity
 public class Contact {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @XmlAttribute(name = "id")
     private Long id;
+    
+    @XmlAttribute(name="uri")
+    private String uri;
+    
+    @XmlElement(name = "firstName")
     private String firstName;
+    
+    @XmlElement(name = "middleName")
     private String middleName;
+    
+    @XmlElement(name = "lastName")
     private String lastName;
+    
     private Date dob;
     private String homePhone;
     private String workPhone;

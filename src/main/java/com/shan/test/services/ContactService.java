@@ -1,23 +1,30 @@
 package com.shan.test.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.shan.test.model.Contact;
-import com.shan.test.repository.ContactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
+import com.shan.test.model.Contact;
+import com.shan.test.model.Contacts;
+import com.shan.test.repository.ContactRepository;
 
 /**
  * Created by ssrinivasan on 2/13/2017.
@@ -54,13 +61,16 @@ public class ContactService {
 
     @GET
     @Path("/contacts")
+    @Produces("application/vnd.com.demo.contact-management.contact+xml;charset=UTF-8;version=1")
     public Response getAllContacts(@Context UriInfo ui) throws JsonProcessingException {
         MultivaluedMap<String, String> queryParameters = ui.getQueryParameters();
         Iterable<Contact> contacts = null;
         if(queryParameters.size()==0){
             contacts = contactRepository.findAll();
         }
-          return Response.status(200).entity( new Gson().toJson(contacts)).build();
+        Contacts contactsWrapper  = new Contacts();
+        contactsWrapper.getContacts().addAll(StreamSupport.stream(contacts.spliterator(),true).collect(Collectors.toList()));
+          return Response.status(200).entity( contactsWrapper).build();
     }
     @GET
     @Path("/contacts/{id}")

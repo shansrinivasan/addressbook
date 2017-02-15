@@ -21,19 +21,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "addressbook")
-@Path("/")
+@Path("/addressbook")
 @Service
 public class AddressBookService {
 
     @XmlElement(name = "contacts")
     private String uri1 = "/contacts";
 
-    @XmlElement(name = "report")
-    private String uri2 = "/contacts/test";
+    @XmlElement(name = "relationships")
+    private String uri2 = "/relationships/";
 
-    @Autowired
-    private ContactRepository contactRepository;
-    public String getUri1() {
+    @XmlElement(name = "tags")
+    private String uri3 = "/tags/";
+
+    public String getUri3() {
+		return uri3;
+	}
+
+	public void setUri3(String uri3) {
+		this.uri3 = uri3;
+	}
+
+	public String getUri1() {
         return uri1;
     }
 
@@ -49,11 +58,6 @@ public class AddressBookService {
         this.uri2 = uri2;
     }
 
-    @GET
-    @Path("/contacts")
-    public Response getAllContacts() throws JsonProcessingException {
-          return Response.status(200).entity( new Gson().toJson(contactRepository.findAll())).build();
-    }
 
     @GET
     @Path("/")
