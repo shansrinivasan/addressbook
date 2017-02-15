@@ -1,35 +1,32 @@
 package com.shan.test.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.shan.test.model.Contact;
 import com.shan.test.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 
 /**
  * Created by ssrinivasan on 2/13/2017.
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "contacts")
+@XmlRootElement(name = "addressbook")
 @Path("/")
 @Service
-public class ContactService {
+public class AddressBookService {
 
     @XmlElement(name = "contacts")
-    private String uri1 = "/contacts/users";
+    private String uri1 = "/contacts";
 
     @XmlElement(name = "report")
     private String uri2 = "/contacts/test";
@@ -54,24 +51,14 @@ public class ContactService {
 
     @GET
     @Path("/contacts")
-    public Response getAllContacts(@Context UriInfo ui) throws JsonProcessingException {
-        MultivaluedMap<String, String> queryParameters = ui.getQueryParameters();
-        Iterable<Contact> contacts = null;
-        if(queryParameters.size()==0){
-            contacts = contactRepository.findAll();
-        }
-          return Response.status(200).entity( new Gson().toJson(contacts)).build();
-    }
-    @GET
-    @Path("/contacts/{id}")
-    public Response findContact(@PathParam("id") Long id) throws JsonProcessingException {
-          return Response.status(200).entity( new Gson().toJson(contactRepository.findOne(id))).build();
+    public Response getAllContacts() throws JsonProcessingException {
+          return Response.status(200).entity( new Gson().toJson(contactRepository.findAll())).build();
     }
 
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_XML)
-    public ContactService getServiceInfo() {
-        return new ContactService();
+    public AddressBookService getServiceInfo() {
+        return new AddressBookService();
     }
 }

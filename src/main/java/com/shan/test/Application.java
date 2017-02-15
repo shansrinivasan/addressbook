@@ -48,7 +48,7 @@ public class Application {
             repository.save(new Contact("Michelle", "Dessler"));
 
             // fetch all customers
-            log.info("Customers found with findAll():");
+            log.info("Contacts found with findAll():");
             log.info("-------------------------------");
             for (Contact customer : repository.findAll()) {
                 log.info(customer.toString());
@@ -57,7 +57,7 @@ public class Application {
 
             // fetch an individual customer by ID
             Contact customer = repository.findOne(1L);
-            log.info("Customer found with findOne(1L):");
+            log.info("Contact found with findOne(1L):");
             log.info("--------------------------------");
             log.info(customer.toString());
             log.info("");
