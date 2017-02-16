@@ -1,8 +1,7 @@
-package com.shan.test.model;
+package com.shan.demo.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 public class Relationship {
