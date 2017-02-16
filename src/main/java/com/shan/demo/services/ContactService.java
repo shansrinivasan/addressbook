@@ -51,6 +51,7 @@ public class ContactService {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
+    @Formatted
     public Response getAllContacts(@QueryParam("firstName") String firstName,@QueryParam("lastName") String lastName){
         List<Contact> contacts = new ArrayList<>();
 

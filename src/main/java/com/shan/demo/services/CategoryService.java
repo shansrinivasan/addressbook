@@ -10,6 +10,8 @@ import com.shan.demo.repository.ContactRepository;
 import com.shan.demo.repository.RelationshipRepository;
 import com.shan.demo.resources.CategoryResource;
 import com.shan.demo.resources.RelationshipResource;
+
+import org.jboss.resteasy.annotations.providers.jackson.Formatted;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.jaxrs.JaxRsLinkBuilder;
@@ -39,6 +41,7 @@ public class CategoryService {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Formatted
     public Response findCategory(@PathParam("id") Long id) {
         return Response.status(200).entity( categoryRepository.findOne(id)).build();
     }
@@ -46,6 +49,7 @@ public class CategoryService {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
+    @Formatted
     public Response getAllCategories(){
         CategoryResourceAssembler assembler = new CategoryResourceAssembler();
         List<CategoryResource> resources = assembler.toResources(categoryRepository.findAll());

@@ -44,6 +44,7 @@ public class TagService {
     @GET
     @Path("/{tagName}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Formatted
     public Response findCategory(@PathParam("tagName") String tagName) {
         return Response.status(200).entity( tagRepository.findOne(tagName)).build();
     }
