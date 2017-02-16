@@ -10,6 +10,8 @@ import com.shan.demo.repository.ContactRepository;
 import com.shan.demo.repository.RelationshipRepository;
 import com.shan.demo.resources.ContactResource;
 import com.shan.demo.resources.RelationshipResource;
+
+import org.jboss.resteasy.annotations.providers.jackson.Formatted;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
@@ -46,6 +48,7 @@ public class RelationshipService {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
+    @Formatted
     public Response getAllRelationships(){
         RelationshipResourceAssembler assembler = new RelationshipResourceAssembler();
         List<RelationshipResource> resources = assembler.toResources(relationshipRepository.findAll());
