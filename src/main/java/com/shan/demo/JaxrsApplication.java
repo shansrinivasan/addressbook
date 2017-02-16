@@ -1,13 +1,25 @@
 package com.shan.demo;
 
-import com.shan.demo.services.*;
-import io.swagger.jaxrs.config.BeanConfig;
-import org.springframework.stereotype.Component;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
+
+import org.springframework.stereotype.Component;
+
+import com.shan.demo.providers.JacksonConfig;
+import com.shan.demo.resources.AddressBookResource;
+import com.shan.demo.resources.CategoryResource;
+import com.shan.demo.resources.RelationshipResource;
+import com.shan.demo.resources.TagResource;
+import com.shan.demo.services.AddressBookService;
+import com.shan.demo.services.CategoryService;
+import com.shan.demo.services.ContactService;
+import com.shan.demo.services.RelationshipService;
+import com.shan.demo.services.TagService;
+
+import io.swagger.jaxrs.config.BeanConfig;
 
 /**
  * Created by ssrinivasan on 2/13/2017.
@@ -27,6 +39,11 @@ public class JaxrsApplication  extends Application {
         //resources.add(FirstResource.class);
         //resources.add(SecondResource.class);
         //...
+        resources.add(AddressBookResource.class);
+        resources.add(CategoryResource.class);
+        resources.add(RelationshipResource.class);
+        resources.add(TagResource.class);
+        resources.add(JacksonConfig.class);
         resources.add(ContactService.class);
         resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
@@ -41,6 +58,7 @@ public class JaxrsApplication  extends Application {
         beanConfig.setResourcePackage("io.swagger.resources");
         beanConfig.setScan(true);
          this.singletons.add(ContactService.class);
+         this.singletons.add(JacksonConfig.class);
          this.singletons.add(RelationshipService.class);
          this.singletons.add(TagService.class);
          this.singletons.add(CategoryService.class);
