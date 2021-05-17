@@ -5,9 +5,10 @@ https://github.com/shansrinivasan/addressbook
 Instructions to run the application(Maven/REST EASY/Spring Boot/JPA/Groovy):
 **The application requires Java 1.8
 ***DEMO**RAMAN my change is the best 
-
+**DEMO RAYMOND change for XYZ-1245
 1) git clone from the above URL or extract the attached zip file.
 2) Open pom.xml import as maven project
+
 3) Run main class com.shan.demo.Application 
 
 This should boot up the whole application and the application should be accessible at the below URL
