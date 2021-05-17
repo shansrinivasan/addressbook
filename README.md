@@ -4,8 +4,7 @@ https://github.com/shansrinivasan/addressbook
 
 Instructions to run the application(Maven/REST EASY/Spring Boot/JPA/Groovy):
 **The application requires Java 1.8
-***DEMO-RAMON ME MAKING THIS CHANGE
-Intellij or Eclipse or Any Java IDE
+***DEMO**RAMAN my change is the best 
 
 1) git clone from the above URL or extract the attached zip file.
 2) Open pom.xml import as maven project
