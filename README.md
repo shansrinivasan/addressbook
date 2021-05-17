@@ -8,7 +8,7 @@ Instructions to run the application(Maven/REST EASY/Spring Boot/JPA/Groovy):
 **DEMO RAYMOND change for XYZ-1245
 **DEMO RAMON WORKING ON THIS SIDE BRANCH XYZ-1245
 **COMMIT 1 for 1249
-**COMMIT 2
+**COMMIT 2 for 1249
 1) git clone from the above URL or extract the attached zip file.
 2) Open pom.xml import as maven project
 
