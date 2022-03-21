@@ -29,14 +29,11 @@ Note:
 4) With http://localhost:8080/contacts/1/relationship/2 we can implement recursive family tree/relatonship tree with any UI. I did not cover that part of implementation. Simple recursive code can give all the contacts in the relationship.
 5) This is implemented purely as a POC/spike task.
 
-
 Sample output of the address book-management json, on click of these links, one should be able to navigate the resources in the system.
 By default i have set to be formatted output, so the responses should look good in most of the browsers.
 {
   "links" : [ {
     "rel" : "self",
-    "href" : "http://localhost:8080/addressbook-management"
-  } ],
   "content" : [ {
     "uri" : "contacts",
     "links" : [ {
@@ -62,4 +59,10 @@ By default i have set to be formatted output, so the responses should look good 
       "href" : "http://localhost:8080/tags"
     } ]
   } ]
-}
+c
+Hello @Nal changes
+
+
+
+
+
